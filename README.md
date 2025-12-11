@@ -7,12 +7,9 @@ This project automates the process of generating **tampered audio** by replacing
 * Whisper or WhisperX for transcription
 * Automatic temporary working directories
 * Automatic retries and logging
+# How It Works
 
----
-
-# How It Works (High-Level)
-
-For every detected **deepfake directory**, the script:
+For every detected **deepfake directiry**, the script:
 
 1. Finds the file `resampled.wav` (the donor REAL audio).
 2. Processes:
@@ -22,9 +19,9 @@ For every detected **deepfake directory**, the script:
    * `audio2.wav`
 3. Runs `splice_replace.py`:
 
-   * Transcribes both audio files
-   * Finds matching words
-   * Extracts matching word-segments
+   * Transcribes both audio files using whipserx (and if that fails using whisper)
+   * Finds matching words by comparing the dictionaries that are output by the transcirption
+   * Extracts matching word-segments by picking from them randomly
    * Splices real audio into the deepfake file
 4. Saves the tampered output into:
 
